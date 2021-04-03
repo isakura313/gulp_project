@@ -3,9 +3,16 @@ const sass = require('gulp-sass')
 const cleanCSS = require('gulp-clean-css');
 const concat = require('gulp-concat');
 const cssnano = require('gulp-cssnano');
+const pug = require('gulp-pug')
 
 
 const browserSync = require('browser-sync').create();
+
+function toPug(){
+    return gulp.src('src/views/*.pug')
+        .pipe(pug())
+        .pipe(gulp.dest('src'))
+}
 
 //compile sass into css, optimize it
 function style() {
@@ -33,8 +40,8 @@ function watch() {
         }
     });
     gulp.watch('src/sass/*.sass', gulp.series(style, changeStyle));
-    // gulp.watch('src/css/*.*', changeStyle());
-    gulp.watch('./*.html').on('change',browserSync.reload);
+    gulp.watch('src/views/*.pug', toPug);
+    gulp.watch('src/views/*.pug').on('change',browserSync.reload);
     gulp.watch('./js/**/*.js').on('change', browserSync.reload);
 }
 

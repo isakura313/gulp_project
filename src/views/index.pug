@@ -1,0 +1,16 @@
+doctype html
+html(lang="ru")
+    head
+        title Интернет магазин
+        link(rel='stylesheet' href='./css/min/main.css')
+        meta(content="Simple pug (jade) starter aimed to quickly deliver HTML & CSS projects" name="description")
+    body
+        div(class='columns has-text-centered')
+            div(class='column')
+                h1(class='title') Интернет магазин
+                - const values = ['Прекрасно','здорово', 'круто', 'балдежно'];
+                h3 Поговорим об эмоциях, которые обычно охватывают наших посетителей
+                ul
+                    each val in values
+                        li= val 
+
